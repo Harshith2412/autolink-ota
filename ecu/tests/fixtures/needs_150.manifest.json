@@ -1,0 +1,13 @@
+{
+  "firmware_id": "fw-needs-150",
+  "hardware_id": "ALK-TCU-R1",
+  "key_id": "test-key-1",
+  "min_current_version": "1.5.0",
+  "release_notes": "fixture needs_150",
+  "security_counter": 1,
+  "sha256": "ae2321ee69181ebf6db3cad5c3f794b6fd9719cf6942fc14e02042e52ef75ee2",
+  "signature": "ButrU6QNf42bPTKYnupvScX2cdWV8Fy1sdAg1BxdH7xeq9SoJCjkdMu0Ng8AkoiE+pV8wZf/n/x/22J6uLTTCw==",
+  "simulate_unhealthy": false,
+  "size": 8800,
+  "version": "1.6.0"
+}

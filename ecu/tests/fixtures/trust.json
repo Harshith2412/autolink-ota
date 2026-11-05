@@ -1,0 +1,15 @@
+{
+  "keys": [
+    {
+      "key_id": "test-key-1",
+      "public_key_b64": "u2WIRq3jp4ILOgg9n9Sle7t4VBvsaVdWSJ3R17+oc4E="
+    },
+    {
+      "key_id": "test-key-revoked",
+      "public_key_b64": "aJMlaGijg/JbueVeMgwdsPz4n8RE8vSITuzrAat3x/s="
+    }
+  ],
+  "revoked": [
+    "test-key-revoked"
+  ]
+}

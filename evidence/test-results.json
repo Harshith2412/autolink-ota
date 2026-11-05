@@ -1,0 +1,62 @@
+{
+  "environment": {
+    "generated_at": "2026-11-05T15:37:23+00:00",
+    "platform": "Linux-6.18.44-fc-v236-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "node": "v22.23.4",
+    "cpus": 1
+  },
+  "suites": [
+    {
+      "suite": "ECU unit tests (C++17)",
+      "command": "make -C ecu test",
+      "cwd": ".",
+      "exit_code": 0,
+      "tests": 32,
+      "passed": 32,
+      "failed": 0,
+      "output_tail": "make: Entering directory '/home/claude/autolink-ota/ecu'\n./build-make/ecu_tests\n[       OK ] StateMachine.UT001_HappyPathTransitionsAreValid\n[       OK ] StateMachine.UT002_InvalidTransitionsRejected\n[       OK ] StateMachine.UT003_EveryStateNameRoundTrips\n[       OK ] StateMachine.UT004_NoStateSkipsVerificationToReachStaging\n[       OK ] Version.UT010_ParseAndCompare\n[       OK ] Crypto.UT020_Sha256KnownAnswer\n[       OK ] Crypto.UT021_Ed25519Rfc8032Vector1\n[       OK ] Crypto.UT022_StrictDecoders\n[       OK ] Manifest.UT030_ValidSignedPackageAccepted\n[       OK ] Manifest.UT031_SignatureFailures\n[       OK ] Manifest.UT032_TamperedFieldInvalidatesSignature\n[       OK ] Manifest.UT033_PolicyChecks\n[       OK ] Manifest.UT034_CorruptedImageRejected\n[       OK ] Manifest.UT035_UnsafeIdentifiersRejected\n[       OK ] Persistence.UT040_StateRoundTripsAtomically\n[       OK ] Persistence.UT041_CorruptStateFailsClosed\n[       OK ] Agent.UT050_SuccessfulUpdateCommits\n[       OK ] Agent.UT051_CorruptedDownloadRejectedNotActivated\n[       OK ] Agent.UT052_InvalidSignatureRejected\n[       OK ] Agent.UT053_HealthCheckFailureRollsBack\n[       OK ] Agent.UT054_RecoveryFailureLatches\n[       OK ] Agent.UT055_DuplicateAndOutOfOrderCommandsIgnored\n[       OK ] Agent.UT056_ExpiredOrMisaddressedCommandsRejected\n[       OK ] Agent.UT057_InterruptedDownloadResumesWithRange\n[       OK ] Agent.UT058_DownloadAbandonedAfterMaxAttempts\n[       OK ] Agent.UT059_EventsQueuedWhileOfflineAndFlushedLater\n[       OK ] Agent.UT060_AntiRollbackFloorPersistsAcrossUpdates\n[       OK ] PowerLoss.UT070_DuringDownloadResumesAndCommits\n[       OK ] PowerLoss.UT071_DuringStagingRestagesAndCommits\n[       OK ] PowerLoss.UT072_DuringActivationRollsBackToKnownGood\n[       OK ] PowerLoss.UT073_DuringHealthCheckRollsBack\n[       OK ] PowerLoss.UT074_AfterCommitStaysOnNewVersion\n[==========] 32 tests, 0 failed\nmake: Leaving directory '/home/claude/autolink-ota/ecu'\n[fault] simulated power loss after entering DOWNLOADING\n[fault] simulated power loss after entering STAGING\n[fault] simulated power loss after entering ACTIVATING\n[fault] simulated power loss after entering HEALTH_CHECK\n[fault] simulated power loss after entering COMMITTED\n"
+    },
+    {
+      "suite": "Backend API/service tests (Python)",
+      "command": "/usr/bin/python3 -m unittest discover -s tests -t .",
+      "cwd": "backend",
+      "exit_code": 0,
+      "tests": 28,
+      "passed": 28,
+      "failed": 0,
+      "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.798s\n\nOK\n"
+    },
+    {
+      "suite": "Dashboard unit tests (TypeScript)",
+      "command": "frontend/node_modules/.bin/tsx --test tests/unit/rail.test.ts",
+      "cwd": "frontend",
+      "exit_code": 0,
+      "tests": 8,
+      "passed": 8,
+      "failed": 0,
+      "output_tail": "TAP version 13\n# Subtest: committed fills the whole rail\nok 1 - committed fills the whole rail\n  ---\n  duration_ms: 4.706964\n  type: 'test'\n  ...\n# Subtest: not yet started shows nothing reached\nok 2 - not yet started shows nothing reached\n  ---\n  duration_ms: 0.158276\n  type: 'test'\n  ...\n# Subtest: in-progress marks the current stop\nok 3 - in-progress marks the current stop\n  ---\n  duration_ms: 0.13684\n  type: 'test'\n  ...\n# Subtest: signature/digest rejection fails at Verify\nok 4 - signature/digest rejection fails at Verify\n  ---\n  duration_ms: 0.095325\n  type: 'test'\n  ...\n# Subtest: rollback fails at Health check, not at Verify\nok 5 - rollback fails at Health check, not at Verify\n  ---\n  duration_ms: 0.172807\n  type: 'test'\n  ...\n# Subtest: abandoned download fails at Download\nok 6 - abandoned download fails at Download\n  ---\n  duration_ms: 0.128208\n  type: 'test'\n  ...\n# Subtest: command rejected by ECU fails at the first stop\nok 7 - command rejected by ECU fails at the first stop\n  ---\n  duration_ms: 0.079134\n  type: 'test'\n  ...\n# Subtest: recovery failure is drawn as a failure\nok 8 - recovery failure is drawn as a failure\n  ---\n  duration_ms: 0.107124\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 200.412944\n"
+    },
+    {
+      "suite": "Integration: backend + ECU binary",
+      "command": "/usr/bin/python3 -m unittest tests.integration.test_end_to_end -v",
+      "cwd": ".",
+      "exit_code": 0,
+      "tests": 5,
+      "passed": 5,
+      "failed": 0,
+      "output_tail": "test_it001_signed_update_completes_end_to_end (tests.integration.test_end_to_end.EndToEnd.test_it001_signed_update_completes_end_to_end) ... ok\ntest_it002_corrupted_image_rejected_by_ecu (tests.integration.test_end_to_end.EndToEnd.test_it002_corrupted_image_rejected_by_ecu) ... ok\ntest_it003_tampered_package_rejected_at_upload (tests.integration.test_end_to_end.EndToEnd.test_it003_tampered_package_rejected_at_upload) ... ok\ntest_it004_power_loss_during_activation_recovers (tests.integration.test_end_to_end.EndToEnd.test_it004_power_loss_during_activation_recovers) ... ok\ntest_it005_ecu_revocation_is_defence_in_depth (tests.integration.test_end_to_end.EndToEnd.test_it005_ecu_revocation_is_defence_in_depth) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 1.811s\n\nOK\n"
+    },
+    {
+      "suite": "End-to-end: dashboard in Chromium",
+      "command": "/usr/bin/python3 -m unittest tests.integration.test_dashboard_e2e -v",
+      "cwd": ".",
+      "exit_code": 0,
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "output_tail": "ok   rejects wrong password with a visible error\nok   signs in and shows fleet overview from the backend\nok   vehicle page shows committed firmware, rail and telemetry\nok   rejected corrupt update is shown as rejected, version unchanged\nok   campaign page lists both outcomes\nok   audit log shows the approval\nok   firmware page shows verified signature\nok   basic accessibility: labelled controls, named buttons, one h1\nok   narrow viewport has no horizontal page scroll\nok   no console errors\n{\"total\":10,\"failed\":0}\n \ntest_it010_dashboard_shows_real_update_lifecycle (tests.integration.test_dashboard_e2e.DashboardEndToEnd.test_it010_dashboard_shows_real_update_lifecycle) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 4.327s\n\nOK\n"
+    }
+  ]
+}

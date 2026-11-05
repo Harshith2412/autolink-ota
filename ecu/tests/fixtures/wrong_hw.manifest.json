@@ -1,0 +1,13 @@
+{
+  "firmware_id": "fw-wrong-hw",
+  "hardware_id": "ALK-OTHER-HW",
+  "key_id": "test-key-1",
+  "min_current_version": "1.0.0",
+  "release_notes": "fixture wrong_hw",
+  "security_counter": 1,
+  "sha256": "9fc11cb3b560b44cbf3ca4d35779636dcfb2fd11e53e4b9228e4eb37d1f6856d",
+  "signature": "Fw0piGvHSCAwG8RbXm+U26WN80dhTrR1+ciSfKoBiTmjhgvJ3xss77n1ybH1FhWZkXoQdUt2DhRfdzvGwc2bAA==",
+  "simulate_unhealthy": false,
+  "size": 8600,
+  "version": "1.1.0"
+}

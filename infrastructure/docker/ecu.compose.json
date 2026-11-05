@@ -1,0 +1,2 @@
+{"vehicle_id": "VIN-DEMO-001", "ecu_id": "ECU-TCU-01", "hardware_id": "ALK-TCU-R1", "factory_version": "1.0.0",
+ "state_dir": "/state", "backend_url": "http://backend:8000", "trust_store": "/config/trust.json", "heartbeat_ms": 2000}

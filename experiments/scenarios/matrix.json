@@ -1,0 +1,369 @@
+{
+  "version": 1,
+  "base_seed": 20261105,
+  "repetitions": 7,
+  "notes": "Faults are simulated in software. 'packet loss' is modelled per TCP connection by the proxy.",
+  "scenarios": [
+    {
+      "id": "baseline_success",
+      "kind": "ecu",
+      "category": "normal",
+      "description": "No faults; signed update commits",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      }
+    },
+    {
+      "id": "corrupted_artifact",
+      "kind": "ecu",
+      "category": "invalid_package",
+      "description": "Image bit-flipped after download",
+      "expected": {
+        "deployment_status": [
+          "REJECTED"
+        ],
+        "final_version": "base"
+      },
+      "ecu_flags": [
+        "--corrupt-download"
+      ]
+    },
+    {
+      "id": "ecu_revoked_signing_key",
+      "kind": "ecu",
+      "category": "invalid_package",
+      "description": "ECU trust store revokes the signing key the cloud still trusts",
+      "expected": {
+        "deployment_status": [
+          "REJECTED"
+        ],
+        "final_version": "base"
+      },
+      "ecu_revokes_key": true
+    },
+    {
+      "id": "api_invalid_signature_upload",
+      "kind": "api",
+      "category": "invalid_package",
+      "description": "Manifest field changed after signing",
+      "expected": {
+        "result": "422:BAD_SIGNATURE"
+      }
+    },
+    {
+      "id": "api_untrusted_key_upload",
+      "kind": "api",
+      "category": "invalid_package",
+      "description": "Signed by an attacker key reusing a trusted key id",
+      "expected": {
+        "result": "422:BAD_SIGNATURE"
+      }
+    },
+    {
+      "id": "api_wrong_hardware_campaign",
+      "kind": "api",
+      "category": "invalid_package",
+      "description": "Campaign targets incompatible hardware",
+      "expected": {
+        "result": "422"
+      }
+    },
+    {
+      "id": "api_rollback_campaign",
+      "kind": "api",
+      "category": "invalid_package",
+      "description": "Campaign would downgrade a vehicle",
+      "expected": {
+        "result": "422"
+      }
+    },
+    {
+      "id": "interrupted_download",
+      "kind": "ecu",
+      "category": "network",
+      "description": "Transfer aborted after a random byte count; resume with Range",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      },
+      "interrupt_bytes": [
+        1024,
+        250000
+      ]
+    },
+    {
+      "id": "power_loss_downloading",
+      "kind": "ecu",
+      "category": "recovery",
+      "description": "Process exits right after persisting DOWNLOADING; power restored",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      },
+      "ecu_flags": [
+        "--crash-after",
+        "DOWNLOADING"
+      ]
+    },
+    {
+      "id": "power_loss_verifying",
+      "kind": "ecu",
+      "category": "recovery",
+      "description": "Process exits right after persisting VERIFYING; power restored",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      },
+      "ecu_flags": [
+        "--crash-after",
+        "VERIFYING"
+      ]
+    },
+    {
+      "id": "power_loss_staging",
+      "kind": "ecu",
+      "category": "recovery",
+      "description": "Process exits right after persisting STAGING; power restored",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      },
+      "ecu_flags": [
+        "--crash-after",
+        "STAGING"
+      ]
+    },
+    {
+      "id": "power_loss_ready_to_activate",
+      "kind": "ecu",
+      "category": "recovery",
+      "description": "Process exits right after persisting READY_TO_ACTIVATE; power restored",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      },
+      "ecu_flags": [
+        "--crash-after",
+        "READY_TO_ACTIVATE"
+      ]
+    },
+    {
+      "id": "power_loss_activating",
+      "kind": "ecu",
+      "category": "recovery",
+      "description": "Process exits right after persisting ACTIVATING; power restored",
+      "expected": {
+        "deployment_status": [
+          "ROLLED_BACK"
+        ],
+        "final_version": "base"
+      },
+      "ecu_flags": [
+        "--crash-after",
+        "ACTIVATING"
+      ]
+    },
+    {
+      "id": "power_loss_health_check",
+      "kind": "ecu",
+      "category": "recovery",
+      "description": "Process exits right after persisting HEALTH_CHECK; power restored",
+      "expected": {
+        "deployment_status": [
+          "ROLLED_BACK"
+        ],
+        "final_version": "base"
+      },
+      "ecu_flags": [
+        "--crash-after",
+        "HEALTH_CHECK"
+      ]
+    },
+    {
+      "id": "power_loss_committed",
+      "kind": "ecu",
+      "category": "recovery",
+      "description": "Process exits right after persisting COMMITTED; power restored",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      },
+      "ecu_flags": [
+        "--crash-after",
+        "COMMITTED"
+      ]
+    },
+    {
+      "id": "health_check_failure",
+      "kind": "ecu",
+      "category": "recovery",
+      "description": "Injected health-check failure after activation",
+      "expected": {
+        "deployment_status": [
+          "ROLLED_BACK"
+        ],
+        "final_version": "base"
+      },
+      "ecu_flags": [
+        "--health-check-fail"
+      ]
+    },
+    {
+      "id": "unhealthy_firmware",
+      "kind": "ecu",
+      "category": "recovery",
+      "description": "Signed release whose self-test fails",
+      "expected": {
+        "deployment_status": [
+          "ROLLED_BACK"
+        ],
+        "final_version": "base"
+      },
+      "unhealthy_firmware": true
+    },
+    {
+      "id": "recovery_failure",
+      "kind": "ecu",
+      "category": "recovery",
+      "description": "Health check fails and last-known-good image is corrupt",
+      "expected": {
+        "deployment_status": [
+          "RECOVERY_FAILED"
+        ],
+        "final_version": "target"
+      },
+      "ecu_flags": [
+        "--health-check-fail",
+        "--recovery-fail"
+      ]
+    },
+    {
+      "id": "process_kill",
+      "kind": "ecu",
+      "category": "recovery",
+      "description": "SIGKILL at a random time while the update is in flight (20-40 ms link latency widens the window), then restart",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED",
+          "ROLLED_BACK"
+        ],
+        "final_version": "any"
+      },
+      "kill_ms": [
+        10,
+        300
+      ],
+      "proxy": {
+        "delay_ms": [
+          20,
+          40
+        ]
+      }
+    },
+    {
+      "id": "duplicate_commands",
+      "kind": "ecu",
+      "category": "normal",
+      "description": "Every command batch delivered twice",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      },
+      "ecu_flags": [
+        "--replay-commands"
+      ]
+    },
+    {
+      "id": "network_delay",
+      "kind": "ecu",
+      "category": "network",
+      "description": "50-300 ms latency per connection",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      },
+      "proxy": {
+        "delay_ms": [
+          50,
+          300
+        ]
+      }
+    },
+    {
+      "id": "packet_loss",
+      "kind": "ecu",
+      "category": "network",
+      "description": "25% of TCP connections reset",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      },
+      "proxy": {
+        "drop_prob": 0.25
+      }
+    },
+    {
+      "id": "truncated_responses",
+      "kind": "ecu",
+      "category": "network",
+      "description": "30% of responses cut mid-body",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      },
+      "proxy": {
+        "truncate_prob": 0.3
+      }
+    },
+    {
+      "id": "network_disconnection",
+      "kind": "ecu",
+      "category": "network",
+      "description": "All connections refused for 2 s after approval",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      },
+      "proxy": {},
+      "blackhole_s": 2
+    },
+    {
+      "id": "backend_restart",
+      "kind": "ecu",
+      "category": "network",
+      "description": "Backend + SQLite process stopped for 1.5 s mid-update and restarted",
+      "expected": {
+        "deployment_status": [
+          "SUCCEEDED"
+        ],
+        "final_version": "target"
+      },
+      "backend_restart": 1.5
+    }
+  ]
+}

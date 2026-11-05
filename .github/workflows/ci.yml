@@ -1,0 +1,48 @@
+# (unverified: GitHub Actions cannot run in the build environment. Each job runs
+#  commands that were executed locally; see docs/verification/test-results.md.)
+name: ci
+on: [push, pull_request]
+permissions: { contents: read }
+jobs:
+  ecu:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y libssl-dev cmake
+      - name: CMake + GoogleTest build
+        run: cmake -S ecu -B ecu/build && cmake --build ecu/build -j && ctest --test-dir ecu/build --output-on-failure
+      - name: Makefile build (offline path)
+        run: make -C ecu test
+  backend:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r backend/requirements.txt
+      - run: make test-backend
+  frontend:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: cd frontend && npm install && npm run typecheck && npm run build && npm run test:unit
+  integration:
+    needs: [ecu, backend, frontend]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: sudo apt-get update && sudo apt-get install -y libssl-dev
+      - run: pip install -r backend/requirements.txt
+      - run: cd frontend && npm install && npx playwright install --with-deps chromium && npm run build
+      - run: make test-integration
+      - run: NODE_PATH=$PWD/frontend/node_modules make test-e2e
+      - name: Fault-injection matrix (reduced)
+        run: python3 experiments/runner/run_matrix.py --reps 2 --out experiments/results/ci
+      - uses: actions/upload-artifact@v4
+        with: { name: experiment-results, path: experiments/results/ci }

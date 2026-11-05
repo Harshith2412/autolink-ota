@@ -1,0 +1,13 @@
+{
+  "firmware_id": "fw-v200-counter5",
+  "hardware_id": "ALK-TCU-R1",
+  "key_id": "test-key-1",
+  "min_current_version": "1.0.0",
+  "release_notes": "fixture v200_counter5",
+  "security_counter": 5,
+  "sha256": "2cc1dc39b298793909b094e9cdc5357a3b8356331d119e86b4b8bbac6778b445",
+  "signature": "lY9kCQRNDl4klBk5ilJ0tMcpbr4dRu3MaAS/X5Ar185EvV03JQMcXtKROuKlbWekYMw5Mm93x2TV7fLSjahQBg==",
+  "simulate_unhealthy": false,
+  "size": 9600,
+  "version": "2.0.0"
+}

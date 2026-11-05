@@ -1,0 +1,13 @@
+{
+  "firmware_id": "fw-v120",
+  "hardware_id": "ALK-TCU-R1",
+  "key_id": "test-key-1",
+  "min_current_version": "1.0.0",
+  "release_notes": "fixture v120",
+  "security_counter": 2,
+  "sha256": "490339cc2857ddf87c20ee995242079a119ff4ca786bbb24f8ef1449d4dc89b5",
+  "signature": "sNYzNhqFan8IfT/VXIVaG4FY/CQ2BmajeiLUI2++8MmYbawyVWRDJm0XS6fpWwHlL7Da8QBVnZ+EzqtYkgT4BA==",
+  "simulate_unhealthy": false,
+  "size": 7800,
+  "version": "1.2.0"
+}

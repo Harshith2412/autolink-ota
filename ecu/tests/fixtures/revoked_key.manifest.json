@@ -1,0 +1,13 @@
+{
+  "firmware_id": "fw-revoked-key",
+  "hardware_id": "ALK-TCU-R1",
+  "key_id": "test-key-revoked",
+  "min_current_version": "1.0.0",
+  "release_notes": "fixture revoked_key",
+  "security_counter": 1,
+  "sha256": "a4641b08bcbba65b65d8940dcc7d88cf984b2e3d0546a250063f67a8c76fd4c3",
+  "signature": "ZqhNEcsdDpSsPqugI+IN3dlhe+2GwszaRdZjelIYF/QaxoUjWMqc2q/dmG6xFrtSLRNUAjruVHNPxiQWglsADg==",
+  "simulate_unhealthy": false,
+  "size": 9200,
+  "version": "1.1.0"
+}

@@ -1,0 +1,13 @@
+{
+  "firmware_id": "fw-v300-counter3",
+  "hardware_id": "ALK-TCU-R1",
+  "key_id": "test-key-1",
+  "min_current_version": "1.0.0",
+  "release_notes": "fixture v300_counter3",
+  "security_counter": 3,
+  "sha256": "82892edf823723b6b0137e19db31b623cded643b63ac6d5045baf379857c9d52",
+  "signature": "yxY2Hwn9NNOYBF7PaeehO64vdoYQZ2RbaFkfLv00fo+VmNq2h2hw+5umjU5xnHlUVxO8fkSQcRBtjNcVmsL6Cw==",
+  "simulate_unhealthy": false,
+  "size": 9600,
+  "version": "3.0.0"
+}

@@ -1,0 +1,19 @@
+# secrets and local state
+.dev/
+.env
+*.private.pem
+firmware/keys/*
+!firmware/keys/README.md
+# build output
+ecu/build*/
+frontend/dist/
+frontend/node_modules
+node_modules/
+__pycache__/
+*.pyc
+*.db
+*.db-wal
+*.db-shm
+backend/blobs/
+.terraform/
+*.tfstate*

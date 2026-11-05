@@ -1,0 +1,13 @@
+{
+  "firmware_id": "fw-v090-old",
+  "hardware_id": "ALK-TCU-R1",
+  "key_id": "test-key-1",
+  "min_current_version": "0.0.0",
+  "release_notes": "fixture v090_old",
+  "security_counter": 1,
+  "sha256": "ed48c5dc6eb08f636cfdfc602a750874b02f150bba81bb4bdb060cbe125336da",
+  "signature": "lwMCzoWEPZeOawBESHHWhRwT1aR3KLrXZhHGT4Ms1PGGpnNjN0TNXYUzm4YiPNH0KQ6/AeUyuXPiofOdrTYWBw==",
+  "simulate_unhealthy": false,
+  "size": 8600,
+  "version": "0.9.0"
+}

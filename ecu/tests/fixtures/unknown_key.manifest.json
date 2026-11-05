@@ -1,0 +1,13 @@
+{
+  "firmware_id": "fw-unknown-key",
+  "hardware_id": "ALK-TCU-R1",
+  "key_id": "test-key-unknown",
+  "min_current_version": "1.0.0",
+  "release_notes": "fixture unknown_key",
+  "security_counter": 1,
+  "sha256": "96dd17f9aadc7cd223ee267f07f803d74833b5cc5495c84075fdaaa47a8a3365",
+  "signature": "qkL+rsO5vV1uRzT44OD2aOh0gSUC23wiMZ+XLkSUYkApI6Erf9R9RPwYvUNtT1dY/80ydXeo0SbpsdpmkFS8CA==",
+  "simulate_unhealthy": false,
+  "size": 9200,
+  "version": "1.1.0"
+}

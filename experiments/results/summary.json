@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-11-05T15:36:20+00:00",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.18.44-fc-v236-x86_64-with-glibc2.39",
+    "cpus": 1,
+    "ecu_binary": "ecu/build-make/autolink-ecu",
+    "base_seed": 20261105,
+    "repetitions": 7,
+    "image_size_bytes": 262208,
+    "transport": "HTTP/1.1 over loopback (no TLS)"
+  },
+  "executions": 175,
+  "passed": 175,
+  "failed": 0,
+  "metrics": {
+    "successful_update_rate_normal_and_network_faults": 1.0,
+    "invalid_package_rejection_rate": 1.0,
+    "recovery_success_rate": 1.0,
+    "update_latency_s": {
+      "n": 56,
+      "mean": 0.989,
+      "p50": 0.175,
+      "p95": 2.898,
+      "max": 2.901
+    },
+    "recovery_time_ms": {
+      "n": 57,
+      "mean": 88.8,
+      "p50": 8.0,
+      "p95": 371.0,
+      "max": 435
+    },
+    "state_consistency_violations": 0,
+    "duplicate_command_handling_success_rate": 1.0
+  },
+  "per_scenario": {
+    "baseline_success": {
+      "runs": 7,
+      "passed": 7
+    },
+    "corrupted_artifact": {
+      "runs": 7,
+      "passed": 7
+    },
+    "ecu_revoked_signing_key": {
+      "runs": 7,
+      "passed": 7
+    },
+    "api_invalid_signature_upload": {
+      "runs": 7,
+      "passed": 7
+    },
+    "api_untrusted_key_upload": {
+      "runs": 7,
+      "passed": 7
+    },
+    "api_wrong_hardware_campaign": {
+      "runs": 7,
+      "passed": 7
+    },
+    "api_rollback_campaign": {
+      "runs": 7,
+      "passed": 7
+    },
+    "interrupted_download": {
+      "runs": 7,
+      "passed": 7
+    },
+    "power_loss_downloading": {
+      "runs": 7,
+      "passed": 7
+    },
+    "power_loss_verifying": {
+      "runs": 7,
+      "passed": 7
+    },
+    "power_loss_staging": {
+      "runs": 7,
+      "passed": 7
+    },
+    "power_loss_ready_to_activate": {
+      "runs": 7,
+      "passed": 7
+    },
+    "power_loss_activating": {
+      "runs": 7,
+      "passed": 7
+    },
+    "power_loss_health_check": {
+      "runs": 7,
+      "passed": 7
+    },
+    "power_loss_committed": {
+      "runs": 7,
+      "passed": 7
+    },
+    "health_check_failure": {
+      "runs": 7,
+      "passed": 7
+    },
+    "unhealthy_firmware": {
+      "runs": 7,
+      "passed": 7
+    },
+    "recovery_failure": {
+      "runs": 7,
+      "passed": 7
+    },
+    "process_kill": {
+      "runs": 7,
+      "passed": 7
+    },
+    "duplicate_commands": {
+      "runs": 7,
+      "passed": 7
+    },
+    "network_delay": {
+      "runs": 7,
+      "passed": 7
+    },
+    "packet_loss": {
+      "runs": 7,
+      "passed": 7
+    },
+    "truncated_responses": {
+      "runs": 7,
+      "passed": 7
+    },
+    "network_disconnection": {
+      "runs": 7,
+      "passed": 7
+    },
+    "backend_restart": {
+      "runs": 7,
+      "passed": 7
+    }
+  },
+  "failures": []
+}

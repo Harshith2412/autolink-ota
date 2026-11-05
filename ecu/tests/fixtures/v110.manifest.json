@@ -1,0 +1,13 @@
+{
+  "firmware_id": "fw-v110",
+  "hardware_id": "ALK-TCU-R1",
+  "key_id": "test-key-1",
+  "min_current_version": "1.0.0",
+  "release_notes": "fixture v110",
+  "security_counter": 1,
+  "sha256": "691705e88434d5bbcab1ccc5f4f00e45c161a82663ef6932cab1ad4fad81cca4",
+  "signature": "oGYje6+5YrI+ZF5gC/fbwZAgbcMJP5s1Zdo9AJuzf/rIv5Rq5HR64raL5zjrJcoJxrSdDlg4Z8cV/EjW88psBw==",
+  "simulate_unhealthy": false,
+  "size": 7800,
+  "version": "1.1.0"
+}
